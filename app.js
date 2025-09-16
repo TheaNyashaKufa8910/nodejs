@@ -50,8 +50,33 @@ console.log(counter(['shaun','crystak','ryu']));*/
 
 // module patterns//
 
-var stuff = require('./stuff');
+/*var stuff = require('./stuff');
 
 console.log(stuff.counter(['shaun','crystak','ryu']));
 console.log(stuff.adder(5,6));
-console.log(stuff.adder(stuff.pi,5));
+console.log(stuff.adder(stuff.pi,5));*/
+
+
+//Event emmitter//
+var events = require('events');
+var util = require('util');
+
+var Person = function(name){
+    this.name = name;
+   };
+
+   util.inherits(Person, events.EventEmitter);
+   
+   var james = new Person('james');
+   var mary = new Person('mary');
+   var ryu = new Person('ryu');
+   var people = [james, mary, ryu];
+
+   people.forEach(function(person){
+    person.on('speak' , function(mssg){
+        console.log(person.name + ' said: ' + mssg);
+    } );
+   });
+
+   james.emit('speak', 'hey dudes');
+   ryu.emit('speak', 'I want curry') 
