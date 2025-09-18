@@ -1,1 +1,25 @@
-{}
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "a little test app",
+  "keywords": [
+    "fun",
+    "ninjas"
+  ],
+  "homepage": "https://github.com/TheaNyashaKufa8910/nodejs#readme",
+  "bugs": {
+    "url": "https://github.com/TheaNyashaKufa8910/nodejs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheaNyashaKufa8910/nodejs.git"
+  },
+  "license": "ISC",
+  "author": "me",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {}
+}
