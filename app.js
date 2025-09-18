@@ -1,3 +1,4 @@
+
 //global object//
 /*console.log('hey ninjas'); 
 
@@ -83,7 +84,7 @@ var Person = function(name){
    
    
    //Reading and writing files//
-   var fs = require('fs');
+   //var fs = require('fs');
    //var readMe = fs.readFileSync('readMe.txt', 'utf8');
    //console.log(readMe);//
    //fs.writeFileSync('writeMe.txt', readMe);
@@ -112,14 +113,14 @@ server.listen(3000, '127.0.0.1');
 console.log('yo dawgs, now listening to port 3000');*/
 
 // READABLE STREAMS//
-var http = require('http');
+/*var http = require('http');
 var fs = require('fs');
 var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', 'utf8');
 
 myReadStream.on('data', function(chunk){
     console.log('new chunk received:');
     console.log(chunk);
-});
+});*/
 
 
 /*
@@ -190,13 +191,13 @@ var server = http.createServer(function(req, res){
     res.writeHead(200, {'Content-Type': 'text/html'});
     fs.createReadStream(__dirname + '/index.html').pipe(res);
 
-});
-server.listen(3000, '127.0.0.1');
-console.log('yo dawgs, now listening to port 3000');
-*/
+});*/
+
+//server.listen(3000, '127.0.0.1');
+//console.log('yo dawgs, now listening to port 3000');
 
 //The node package managerr//
-var http = require('http');
+/*var http = require('http');
 var fs = require('fs');
 
 var server = http.createServer(function(req, res){
@@ -212,4 +213,44 @@ var server = http.createServer(function(req, res){
         res.writeHead(200, {'Content-Type': 'application/json'});
         res.end(JSON.stringify(ninjas));
     }
+});*/
+//insalling nodemon//
+//introducion to express//
+//routes//
+//template engines//
+
+
+var express = require('express');
+
+var app = express();
+
+app.set('view engine', 'ejs');
+
+// app.get('/', function(req, res){
+//     res.send('this is  the homepage');
+// });
+// app.get('/contact', function(req, res){
+//     res.send('this is the contact page');
+// });
+
+
+// app.get('/profile/:id', function(req, res){
+//     res.send('You request to see a profile with id of ' + req.params.id);
+// })
+
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
+app.get('/contact', function(req, res){
+    res.sendFile(__dirname + '/contact.html');
+});
+
+
+app.get('/profile/:name', function(req, res){
+    var data = {age: 29, job: 'ninja'};
+    res.render('profile', {person: req.params.name, data: data});
+});
+
+app.listen(3000, '127.0.0.1', () => {
+    console.log("Server running at http://127.0.0.1:3000");
 });
