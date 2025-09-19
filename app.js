@@ -218,6 +218,7 @@ var server = http.createServer(function(req, res){
 //introducion to express//
 //routes//
 //template engines//
+//partial views//
 
 
 var express = require('express');
@@ -225,6 +226,7 @@ var express = require('express');
 var app = express();
 
 app.set('view engine', 'ejs');
+app.use('/assets', express.static('assets'));
 
 // app.get('/', function(req, res){
 //     res.send('this is  the homepage');
@@ -239,15 +241,15 @@ app.set('view engine', 'ejs');
 // })
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/index.html');
+    res.render('index');
 });
 app.get('/contact', function(req, res){
-    res.sendFile(__dirname + '/contact.html');
+        res.render('contact', {qs: req.query});
 });
 
 
 app.get('/profile/:name', function(req, res){
-    var data = {age: 29, job: 'ninja'};
+    var data = {age: 29, job: 'ninja', hobbies: ['eating', 'dancing', 'computing']};
     res.render('profile', {person: req.params.name, data: data});
 });
 
